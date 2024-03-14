@@ -4,7 +4,7 @@ namespace Core.Snakes.Models
 {
     public class SnakeModel
     {
-        private Vector3 _position;
-        private Quaternion _rotation;
+        public Vector3 Position;
+        public Quaternion Rotation;
     }
 }

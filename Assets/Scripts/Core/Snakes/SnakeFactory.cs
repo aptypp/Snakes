@@ -1,5 +1,7 @@
+using Core.Snakes.Models;
 using Core.Snakes.Views;
 using UnityEngine;
+using VContainer;
 
 namespace Core.Snakes
 {
@@ -8,6 +10,7 @@ namespace Core.Snakes
         private readonly SnakesConfig _config;
         private readonly SnakesParent _snakesParent;
 
+        [Inject]
         public SnakeFactory(
             SnakesConfig config,
             SnakesParent snakesParent)
@@ -16,9 +19,21 @@ namespace Core.Snakes
             _snakesParent = snakesParent;
         }
 
-        public SnakeView Create()
+        public SnakeController Create()
         {
-            return Object.Instantiate(_config.SnakeViewPrefab);
+            var snakeModel = new SnakeModel();
+            var snakeView = Object.Instantiate(
+                _config.SnakeViewPrefab,
+                Vector3.zero,
+                Quaternion.identity,
+                _snakesParent.transform);
+
+            var snakeController = new SnakeController(
+                snakeView,
+                snakeModel,
+                _config);
+
+            return snakeController;
         }
     }
 }

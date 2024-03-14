@@ -9,6 +9,15 @@ namespace Core.Snakes
     public class SnakesConfig : ScriptableObject
     {
         [field: SerializeField]
+        public float MoveSpeed { get; private set; }
+
+        [field: SerializeField]
+        public float MoveSmoothDelta { get; private set; }
+
+        [field: SerializeField]
+        public float RotationSmoothDelta { get; private set; }
+
+        [field: SerializeField]
         public SnakeView SnakeViewPrefab { get; private set; }
     }
 }

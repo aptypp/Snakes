@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Core.Snakes
+namespace Core.Snakes.Views
 {
     public sealed class SnakesParent : MonoBehaviour
     {

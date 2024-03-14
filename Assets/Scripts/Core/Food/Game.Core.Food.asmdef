@@ -1,0 +1,7 @@
+{
+  "name": "Game.Core.Food",
+  "references": [
+    "GUID:6df04070934e400ab829c6db0c7c41c0",
+    "GUID:b0214a6008ed146ff8f122a6a9c2f6cc"
+  ]
+}

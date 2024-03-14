@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dcfcdfc8649421ca43826945a91d077, type: 3}
-  m_Name: SnakesConfig
+  m_Script: {fileID: 11500000, guid: 8004b64988c8473daf3ade3bb84f1466, type: 3}
+  m_Name: FoodConfig
   m_EditorClassIdentifier: 
-  <SnakeViewPrefab>k__BackingField: {fileID: 7717979191511964388, guid: a8c597560ca33024e895f952602bdbcf,
+  <FoodViewPrefab>k__BackingField: {fileID: -1399926549823265789, guid: 1b572d4aedb54aa46bc029db87e54754,
     type: 3}

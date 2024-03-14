@@ -48,4 +48,6 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
+  _foodConfig: {fileID: 11400000, guid: 78208a4a5b8528742a4b345d6255c345, type: 2}
   _snakesConfig: {fileID: 11400000, guid: 3986d71c5403b1646af2a95d6a96d194, type: 2}
+  _cameraConfig: {fileID: 11400000, guid: 232997e637d4d8444abeb349b2195480, type: 2}
