@@ -1,0 +1,7 @@
+{
+  "name": "Game.Core.EntryPoints",
+  "references": [
+    "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+    "GUID:22ff7910c8754f439926ad91f205199f"
+  ]
+}
