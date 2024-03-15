@@ -32,7 +32,7 @@ namespace Core.EntryPoints
 
         public void Start()
         {
-            InitializeFood(); //TODO: Make factory for Food
+            InitializeFood();
 
             _snakesSimulator.CreateSnakes();
 
