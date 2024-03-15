@@ -1,6 +1,5 @@
 using Core.Cameras;
 using Core.Food;
-using Core.Food.Views;
 using Core.Simulations;
 using UnityEngine;
 using VContainer;
@@ -10,34 +9,34 @@ namespace Core.EntryPoints
 {
     public class MainSceneEntryPoint : IStartable, ITickable
     {
-        private readonly FoodParent _foodParent;
-        private readonly FoodConfig _foodConfig;
         private readonly FoodPool _foodPool;
-        private readonly CameraConfig _cameraConfig;
+        private readonly FoodConfig _foodConfig;
+        private readonly FoodFactory _foodFactory;
+        private readonly CameraFactory _cameraFactory;
         private readonly SnakesSimulator _snakesSimulator;
 
         [Inject]
         public MainSceneEntryPoint(
-            FoodParent foodParent,
-            FoodConfig foodConfig,
             FoodPool foodPool,
-            CameraConfig cameraConfig,
+            FoodConfig foodConfig,
+            FoodFactory foodFactory,
+            CameraFactory cameraFactory,
             SnakesSimulator snakesSimulator)
         {
-            _foodParent = foodParent;
-            _foodConfig = foodConfig;
             _foodPool = foodPool;
-            _cameraConfig = cameraConfig;
+            _foodConfig = foodConfig;
+            _foodFactory = foodFactory;
+            _cameraFactory = cameraFactory;
             _snakesSimulator = snakesSimulator;
         }
 
         public void Start()
         {
-            InitializeFood();
+            InitializeFood(); //TODO: Make factory for Food
 
-            _snakesSimulator.SpawnSnakes();
+            _snakesSimulator.CreateSnakes();
 
-            Object.Instantiate(_cameraConfig.CameraViewPrefab); //TODO: Make factory for camera
+            _cameraFactory.Create();
         }
 
         public void Tick()
@@ -47,15 +46,19 @@ namespace Core.EntryPoints
 
         private void InitializeFood()
         {
-            const int foodCount = 5;
-
-            for (var foodIndex = 0; foodIndex < foodCount; foodIndex++)
+            for (var foodIndex = 0; foodIndex < _foodConfig.FoodCount; foodIndex++)
             {
-                var foodView = Object.Instantiate(
-                    _foodConfig.FoodViewPrefab,
-                    Vector3.zero,
-                    Quaternion.identity,
-                    _foodParent.transform);
+                var position = Vector3.zero;
+
+                position.x = Random.Range(
+                    _foodConfig.MinFoodPosition.x,
+                    _foodConfig.MaxFoodPosition.x);
+
+                position.z = Random.Range(
+                    _foodConfig.MinFoodPosition.y,
+                    _foodConfig.MaxFoodPosition.y);
+
+                var foodView = _foodFactory.Create(position);
 
                 _foodPool.Add(foodView);
             }

@@ -9,6 +9,9 @@ namespace Core.Snakes
     public class SnakesConfig : ScriptableObject
     {
         [field: SerializeField]
+        public int SnakesCount { get; private set; }
+
+        [field: SerializeField]
         public float MoveSpeed { get; private set; }
 
         [field: SerializeField]
@@ -16,6 +19,12 @@ namespace Core.Snakes
 
         [field: SerializeField]
         public float RotationSmoothDelta { get; private set; }
+
+        [field: SerializeField]
+        public Vector2 MinSpawnPosition { get; private set; }
+
+        [field: SerializeField]
+        public Vector2 MaxSpawnPosition { get; private set; }
 
         [field: SerializeField]
         public SnakeView SnakeViewPrefab { get; private set; }

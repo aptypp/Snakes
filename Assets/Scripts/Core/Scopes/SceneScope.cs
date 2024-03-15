@@ -1,3 +1,4 @@
+using Core.Cameras;
 using Core.EntryPoints;
 using Core.Food;
 using Core.Food.Views;
@@ -26,7 +27,11 @@ namespace Core.Scopes
 
             builder.Register<FoodPool>(Lifetime.Singleton);
 
+            builder.Register<FoodFactory>(Lifetime.Singleton);
+
             builder.Register<SnakeFactory>(Lifetime.Singleton);
+
+            builder.Register<CameraFactory>(Lifetime.Singleton);
 
             builder.Register<SnakesSimulator>(Lifetime.Transient);
 

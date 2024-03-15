@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8004b64988c8473daf3ade3bb84f1466, type: 3}
   m_Name: FoodConfig
   m_EditorClassIdentifier: 
+  <FoodCount>k__BackingField: 5
+  <MinFoodPosition>k__BackingField: {x: -30, y: -30}
+  <MaxFoodPosition>k__BackingField: {x: 30, y: 30}
   <FoodViewPrefab>k__BackingField: {fileID: -1399926549823265789, guid: 1b572d4aedb54aa46bc029db87e54754,
     type: 3}

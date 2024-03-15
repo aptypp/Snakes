@@ -1,4 +1,5 @@
 using Core.Food;
+using Core.Food.Views;
 using Core.Snakes;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ namespace Core.Ai
         {
             _foodPool = foodPool;
             _snakeController = snakeController;
+
+            _snakeController.SnakeView.AteFood += OnAteFood;
         }
 
         public void RotateToClosestFood()
@@ -27,7 +30,7 @@ namespace Core.Ai
             {
                 return;
             }
-            
+
             var directionToFood = foodView.transform.position - snakePosition;
 
             var targetRotation = Quaternion.LookRotation(
@@ -45,6 +48,14 @@ namespace Core.Ai
         public void MoveForward()
         {
             _snakeController.MoveForward();
+        }
+
+        private void OnAteFood(
+            FoodView foodView)
+        {
+            _foodPool.Remove(foodView);
+
+            Object.Destroy(foodView.gameObject);
         }
     }
 }

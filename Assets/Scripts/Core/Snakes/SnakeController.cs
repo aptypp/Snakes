@@ -45,5 +45,12 @@ namespace Core.Snakes
         {
             _snakeModel.Position += _snakeView.transform.forward * _snakesConfig.MoveSpeed * Time.deltaTime;
         }
+
+        public void SetPositionInstantly(
+            Vector3 position)
+        {
+            _snakeModel.Position = position;
+            _snakeView.transform.position = position;
+        }
     }
 }

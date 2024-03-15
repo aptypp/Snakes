@@ -9,6 +9,15 @@ namespace Core.Food
     public class FoodConfig : ScriptableObject
     {
         [field: SerializeField]
+        public int FoodCount { get; private set; }
+
+        [field: SerializeField]
+        public Vector2 MinFoodPosition { get; private set; }
+
+        [field: SerializeField]
+        public Vector2 MaxFoodPosition { get; private set; }
+
+        [field: SerializeField]
         public FoodView FoodViewPrefab { get; private set; }
     }
 }
