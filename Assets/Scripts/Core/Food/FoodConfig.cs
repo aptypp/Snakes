@@ -9,7 +9,10 @@ namespace Core.Food
     public class FoodConfig : ScriptableObject
     {
         [field: SerializeField]
-        public int FoodCount { get; private set; }
+        public int MinFoodCount { get; private set; }
+
+        [field: SerializeField]
+        public int MaxFoodCount { get; private set; }
 
         [field: SerializeField]
         public Vector2 MinFoodPosition { get; private set; }

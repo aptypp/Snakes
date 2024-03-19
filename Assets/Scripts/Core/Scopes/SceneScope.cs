@@ -8,6 +8,7 @@ using Core.Snakes.Views;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using FoodSimulator = Core.Food.FoodSimulator;
 
 namespace Core.Scopes
 {
@@ -32,6 +33,8 @@ namespace Core.Scopes
             builder.Register<SnakeFactory>(Lifetime.Singleton);
 
             builder.Register<CameraFactory>(Lifetime.Singleton);
+
+            builder.Register<FoodSimulator>(Lifetime.Transient);
 
             builder.Register<SnakesSimulator>(Lifetime.Transient);
 

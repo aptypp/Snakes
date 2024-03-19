@@ -38,12 +38,12 @@ namespace Core.Snakes
             _snakeView.transform.rotation = Quaternion.Lerp(
                 _snakeView.transform.rotation,
                 _snakeModel.Rotation,
-                _snakesConfig.RotationSmoothDelta * Time.deltaTime);
+                _snakeModel.RotationSmoothDelta * Time.deltaTime);
         }
 
         public void MoveForward()
         {
-            _snakeModel.Position += _snakeView.transform.forward * _snakesConfig.MoveSpeed * Time.deltaTime;
+            _snakeModel.Position += _snakeView.transform.forward * _snakeModel.MoveSpeed * Time.deltaTime;
         }
 
         public void SetPositionInstantly(

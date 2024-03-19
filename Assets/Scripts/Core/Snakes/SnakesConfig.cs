@@ -12,13 +12,19 @@ namespace Core.Snakes
         public int SnakesCount { get; private set; }
 
         [field: SerializeField]
-        public float MoveSpeed { get; private set; }
+        public float MoveSpeedMin { get; private set; }
+
+        [field: SerializeField]
+        public float MoveSpeedMax { get; private set; }
 
         [field: SerializeField]
         public float MoveSmoothDelta { get; private set; }
 
         [field: SerializeField]
-        public float RotationSmoothDelta { get; private set; }
+        public float RotationSmoothDeltaMin { get; private set; }
+
+        [field: SerializeField]
+        public float RotationSmoothDeltaMax { get; private set; }
 
         [field: SerializeField]
         public Vector2 MinSpawnPosition { get; private set; }

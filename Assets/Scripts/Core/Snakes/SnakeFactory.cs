@@ -22,6 +22,18 @@ namespace Core.Snakes
         public SnakeController Create()
         {
             var snakeModel = new SnakeModel();
+
+            var moveSpeed = Random.Range(
+                _config.MoveSpeedMin,
+                _config.MoveSpeedMax);
+
+            var rotationSmoothDelta = Random.Range(
+                _config.RotationSmoothDeltaMin,
+                _config.RotationSmoothDeltaMax);
+
+            snakeModel.MoveSpeed = moveSpeed;
+            snakeModel.RotationSmoothDelta = rotationSmoothDelta;
+
             var snakeView = Object.Instantiate(
                 _config.SnakeViewPrefab,
                 Vector3.zero,

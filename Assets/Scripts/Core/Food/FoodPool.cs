@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Core.Food.Views;
 using UnityEngine;
@@ -7,6 +8,8 @@ namespace Core.Food
 {
     public class FoodPool
     {
+        public event Action FoodIsOver;
+
         private readonly List<FoodView> _food;
 
         [Inject]
@@ -25,6 +28,8 @@ namespace Core.Food
             FoodView foodView)
         {
             _food.Remove(foodView);
+
+            if (_food.Count == 0) FoodIsOver?.Invoke();
         }
 
         public bool TryGetClosestFood(
