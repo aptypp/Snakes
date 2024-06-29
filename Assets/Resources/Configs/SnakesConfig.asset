@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dcfcdfc8649421ca43826945a91d077, type: 3}
   m_Name: SnakesConfig
   m_EditorClassIdentifier: 
-  <SnakesCount>k__BackingField: 1000
-  <TailsCount>k__BackingField: 10
+  <SnakesCount>k__BackingField: 100
+  <TailsCount>k__BackingField: 5
   <MoveSpeedMin>k__BackingField: 2
   <MoveSpeedMax>k__BackingField: 8
   <MoveSmoothDelta>k__BackingField: 5

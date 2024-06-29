@@ -1,12 +1,13 @@
 using Core.Cameras;
 using Core.Food;
 using Core.Simulations;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
 namespace Core.EntryPoints
 {
-    public class MainSceneEntryPoint : IStartable, ITickable
+    public class MainSceneEntryPoint : IStartable, ITickable, IInitializable
     {
         private readonly FoodSimulator _foodSimulator;
         private readonly CameraFactory _cameraFactory;
@@ -14,13 +15,18 @@ namespace Core.EntryPoints
 
         [Inject]
         public MainSceneEntryPoint(
-            FoodSimulator foodSimulator,
-            CameraFactory cameraFactory,
-            SnakesSimulator snakesSimulator)
+                FoodSimulator foodSimulator,
+                CameraFactory cameraFactory,
+                SnakesSimulator snakesSimulator)
         {
             _foodSimulator = foodSimulator;
             _cameraFactory = cameraFactory;
             _snakesSimulator = snakesSimulator;
+        }
+
+        public void Initialize()
+        {
+            Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.value;
         }
 
         public void Start()
