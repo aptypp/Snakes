@@ -4,22 +4,19 @@ using UnityEngine;
 
 namespace Core.Snakes
 {
-    public class SnakeController
+    public class SnakeViewModel
     {
         public SnakeView SnakeView => _snakeView;
 
         private readonly SnakeView _snakeView;
         private readonly SnakeModel _snakeModel;
-        private readonly SnakesConfig _snakesConfig;
 
-        public SnakeController(
+        public SnakeViewModel(
             SnakeView snakeView,
-            SnakeModel snakeModel,
-            SnakesConfig snakesConfig)
+            SnakeModel snakeModel)
         {
             _snakeView = snakeView;
             _snakeModel = snakeModel;
-            _snakesConfig = snakesConfig;
         }
 
         public void SetTargetRotation(
@@ -33,7 +30,7 @@ namespace Core.Snakes
             _snakeView.transform.position = Vector3.Lerp(
                 _snakeView.transform.position,
                 _snakeModel.Position,
-                _snakesConfig.MoveSmoothDelta * Time.deltaTime);
+                _snakeModel.MoveSmoothDelta * Time.deltaTime);
 
             _snakeView.transform.rotation = Quaternion.Lerp(
                 _snakeView.transform.rotation,

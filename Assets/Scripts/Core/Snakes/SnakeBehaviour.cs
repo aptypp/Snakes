@@ -1,28 +1,27 @@
 using Core.Food;
 using Core.Food.Views;
-using Core.Snakes;
 using UnityEngine;
 
-namespace Core.Ai
+namespace Core.Snakes
 {
-    public class SnakeAi
+    public class SnakeBehaviour
     {
         private readonly FoodPool _foodPool;
-        private readonly SnakeController _snakeController;
+        private readonly SnakeViewModel _snakeViewModel;
 
-        public SnakeAi(
+        public SnakeBehaviour(
             FoodPool foodPool,
-            SnakeController snakeController)
+            SnakeViewModel snakeViewModel)
         {
             _foodPool = foodPool;
-            _snakeController = snakeController;
+            _snakeViewModel = snakeViewModel;
 
-            _snakeController.SnakeView.AteFood += OnAteFood;
+            _snakeViewModel.SnakeView.AteFood += OnAteFood;
         }
 
         public void RotateToClosestFood()
         {
-            var snakePosition = _snakeController.SnakeView.transform.position;
+            var snakePosition = _snakeViewModel.SnakeView.transform.position;
 
             if (!_foodPool.TryGetClosestFood(
                     snakePosition,
@@ -37,17 +36,17 @@ namespace Core.Ai
                 directionToFood,
                 Vector3.up);
 
-            _snakeController.SetTargetRotation(targetRotation);
+            _snakeViewModel.SetTargetRotation(targetRotation);
         }
 
         public void UpdateView()
         {
-            _snakeController.UpdateView();
+            _snakeViewModel.UpdateView();
         }
 
         public void MoveForward()
         {
-            _snakeController.MoveForward();
+            _snakeViewModel.MoveForward();
         }
 
         private void OnAteFood(

@@ -1,7 +1,11 @@
+using System;
+using System.Collections.Generic;
 using Core.Snakes.Models;
 using Core.Snakes.Views;
 using UnityEngine;
 using VContainer;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace Core.Snakes
 {
@@ -19,9 +23,9 @@ namespace Core.Snakes
             _snakesParent = snakesParent;
         }
 
-        public SnakeController Create()
+        public SnakeViewModel Create()
         {
-            var snakeModel = new SnakeModel();
+            var model = new SnakeModel();
 
             var moveSpeed = Random.Range(
                 _config.MoveSpeedMin,
@@ -31,8 +35,10 @@ namespace Core.Snakes
                 _config.RotationSmoothDeltaMin,
                 _config.RotationSmoothDeltaMax);
 
-            snakeModel.MoveSpeed = moveSpeed;
-            snakeModel.RotationSmoothDelta = rotationSmoothDelta;
+            model.Tails = new List<TailView>();
+            model.MoveSpeed = moveSpeed;
+            model.MoveSmoothDelta = _config.MoveSmoothDelta;
+            model.RotationSmoothDelta = rotationSmoothDelta;
 
             var snakeView = Object.Instantiate(
                 _config.SnakeViewPrefab,
@@ -40,12 +46,16 @@ namespace Core.Snakes
                 Quaternion.identity,
                 _snakesParent.transform);
 
-            var snakeController = new SnakeController(
+            var viewModel = new SnakeViewModel(
                 snakeView,
-                snakeModel,
-                _config);
+                model);
 
-            return snakeController;
+            return viewModel;
+        }
+
+        private TailView CreateTailView(Vector3 position)//Todo: implement logic for creating a tail parts
+        {
+            throw new NotImplementedException();
         }
     }
 }

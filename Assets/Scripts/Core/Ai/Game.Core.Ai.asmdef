@@ -1,8 +1,0 @@
-{
-  "name": "Game.Core.Ai",
-  "references": [
-    "GUID:22ff7910c8754f439926ad91f205199f",
-    "GUID:bba0a1dd3d074021afafdc0ea8ddb807",
-    "GUID:6df04070934e400ab829c6db0c7c41c0"
-  ]
-}

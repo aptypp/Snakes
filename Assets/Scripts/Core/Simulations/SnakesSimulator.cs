@@ -1,4 +1,3 @@
-using Core.Ai;
 using Core.Food;
 using Core.Snakes;
 using UnityEngine;
@@ -8,7 +7,7 @@ namespace Core.Simulations
 {
     public class SnakesSimulator
     {
-        private SnakeAi[] _snakes;
+        private SnakeBehaviour[] _snakes;
 
         private readonly FoodPool _foodPool;
         private readonly SnakesConfig _snakesConfig;
@@ -27,11 +26,11 @@ namespace Core.Simulations
 
         public void CreateSnakes()
         {
-            _snakes = new SnakeAi[_snakesConfig.SnakesCount];
+            _snakes = new SnakeBehaviour[_snakesConfig.SnakesCount];
 
             for (var snakeIndex = 0; snakeIndex < _snakes.Length; snakeIndex++)
             {
-                var snakeController = _snakeFactory.Create();
+                var snakeViewModel = _snakeFactory.Create();
 
                 var position = Vector3.zero;
 
@@ -43,11 +42,11 @@ namespace Core.Simulations
                     _snakesConfig.MinSpawnPosition.y,
                     _snakesConfig.MaxSpawnPosition.y);
 
-                snakeController.SetPositionInstantly(position);
+                snakeViewModel.SetPositionInstantly(position);
 
-                _snakes[snakeIndex] = new SnakeAi(
+                _snakes[snakeIndex] = new SnakeBehaviour(
                     _foodPool,
-                    snakeController);
+                    snakeViewModel);
             }
         }
 
