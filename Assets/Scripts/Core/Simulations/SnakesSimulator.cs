@@ -7,7 +7,7 @@ namespace Core.Simulations
 {
     public class SnakesSimulator
     {
-        private SnakeBehaviour[] _snakes;
+        private SnakeViewModel[] _snakes;
 
         private readonly FoodPool _foodPool;
         private readonly SnakesConfig _snakesConfig;
@@ -26,7 +26,7 @@ namespace Core.Simulations
 
         public void CreateSnakes()
         {
-            _snakes = new SnakeBehaviour[_snakesConfig.SnakesCount];
+            _snakes = new SnakeViewModel[_snakesConfig.SnakesCount];
 
             for (var snakeIndex = 0; snakeIndex < _snakes.Length; snakeIndex++)
             {
@@ -42,11 +42,10 @@ namespace Core.Simulations
                     _snakesConfig.MinSpawnPosition.y,
                     _snakesConfig.MaxSpawnPosition.y);
 
-                snakeViewModel.SetPositionInstantly(position);
+                snakeViewModel.Model.TargetPosition = position;
+                snakeViewModel.View.transform.position = position;
 
-                _snakes[snakeIndex] = new SnakeBehaviour(
-                    _foodPool,
-                    snakeViewModel);
+                _snakes[snakeIndex] = snakeViewModel;
             }
         }
 
@@ -54,13 +53,14 @@ namespace Core.Simulations
         {
             foreach (var snake in _snakes)
             {
-                snake.RotateToClosestFood();
-                snake.MoveForward();
+                snake.Model.RotateToClosestFood();
+                snake.Model.Move(snake.View.transform.forward);
             }
 
             foreach (var snake in _snakes)
             {
-                snake.UpdateView();
+                snake.MoveSmoothly();
+                snake.RotateSmoothly();
             }
         }
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Core.Food;
 using Core.Snakes.Models;
 using Core.Snakes.Views;
 using UnityEngine;
@@ -11,21 +12,24 @@ namespace Core.Snakes
 {
     public class SnakeFactory
     {
+        private readonly FoodPool _foodPool;
         private readonly SnakesConfig _config;
         private readonly SnakesParent _snakesParent;
 
         [Inject]
         public SnakeFactory(
+            FoodPool foodPool,
             SnakesConfig config,
             SnakesParent snakesParent)
         {
+            _foodPool = foodPool;
             _config = config;
             _snakesParent = snakesParent;
         }
 
         public SnakeViewModel Create()
         {
-            var model = new SnakeModel();
+            var model = new SnakeModel(_foodPool);
 
             var moveSpeed = Random.Range(
                 _config.MoveSpeedMin,
@@ -46,6 +50,8 @@ namespace Core.Snakes
                 Quaternion.identity,
                 _snakesParent.transform);
 
+            snakeView.AteFood += model.AteFood;
+
             var viewModel = new SnakeViewModel(
                 snakeView,
                 model);
@@ -53,7 +59,7 @@ namespace Core.Snakes
             return viewModel;
         }
 
-        private TailView CreateTailView(Vector3 position)//Todo: implement logic for creating a tail parts
+        private TailView CreateTailView(Vector3 position) //Todo: implement logic for creating a tail parts
         {
             throw new NotImplementedException();
         }

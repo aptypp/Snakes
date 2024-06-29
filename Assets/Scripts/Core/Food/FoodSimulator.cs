@@ -18,6 +18,8 @@ namespace Core.Food
             _foodPool = foodPool;
             _foodConfig = foodConfig;
             _foodFactory = foodFactory;
+
+            _foodPool.FoodIsOver += CreateFood;
         }
 
         public void CreateFood()

@@ -8,24 +8,19 @@ namespace Core.EntryPoints
 {
     public class MainSceneEntryPoint : IStartable, ITickable
     {
-        private readonly FoodPool _foodPool;
         private readonly FoodSimulator _foodSimulator;
         private readonly CameraFactory _cameraFactory;
         private readonly SnakesSimulator _snakesSimulator;
 
         [Inject]
         public MainSceneEntryPoint(
-            FoodPool foodPool,
             FoodSimulator foodSimulator,
             CameraFactory cameraFactory,
             SnakesSimulator snakesSimulator)
         {
-            _foodPool = foodPool;
             _foodSimulator = foodSimulator;
             _cameraFactory = cameraFactory;
             _snakesSimulator = snakesSimulator;
-
-            _foodPool.FoodIsOver += _foodSimulator.CreateFood;
         }
 
         public void Start()
