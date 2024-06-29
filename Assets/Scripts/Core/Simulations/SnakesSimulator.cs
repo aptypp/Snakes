@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Core.Food;
 using Core.Snakes;
 using UnityEngine;
@@ -7,31 +8,29 @@ namespace Core.Simulations
 {
     public class SnakesSimulator
     {
-        private SnakeViewModel[] _snakes;
+        private List<SnakeViewModel> _snakes;
 
-        private readonly FoodPool _foodPool;
         private readonly SnakesConfig _snakesConfig;
         private readonly SnakeFactory _snakeFactory;
 
         [Inject]
         public SnakesSimulator(
-            FoodPool foodPool,
-            SnakesConfig snakesConfig,
-            SnakeFactory snakeFactory)
+                FoodPool foodPool,
+                SnakesConfig snakesConfig,
+                SnakeFactory snakeFactory)
         {
-            _foodPool = foodPool;
             _snakesConfig = snakesConfig;
             _snakeFactory = snakeFactory;
+
+            foodPool.FoodIsOver += DecreaseSnakesSize;
         }
 
         public void CreateSnakes()
         {
-            _snakes = new SnakeViewModel[_snakesConfig.SnakesCount];
+            _snakes = new List<SnakeViewModel>(_snakesConfig.SnakesCount);
 
-            for (var snakeIndex = 0; snakeIndex < _snakes.Length; snakeIndex++)
+            for (var snakeIndex = 0; snakeIndex < _snakesConfig.SnakesCount; snakeIndex++)
             {
-                var snakeViewModel = _snakeFactory.Create();
-
                 var position = Vector3.zero;
 
                 position.x = Random.Range(
@@ -41,11 +40,10 @@ namespace Core.Simulations
                 position.z = Random.Range(
                     _snakesConfig.MinSpawnPosition.y,
                     _snakesConfig.MaxSpawnPosition.y);
+                
+                var snakeViewModel = _snakeFactory.Create(position);
 
-                snakeViewModel.Model.TargetPosition = position;
-                snakeViewModel.View.transform.position = position;
-
-                _snakes[snakeIndex] = snakeViewModel;
+                _snakes.Add(snakeViewModel);
             }
         }
 
@@ -59,8 +57,27 @@ namespace Core.Simulations
 
             foreach (var snake in _snakes)
             {
-                snake.MoveSmoothly();
-                snake.RotateSmoothly();
+                snake.MoveViewSmoothly();
+                snake.RotateViewSmoothly();
+                snake.MoveTailsSmoothly();
+            }
+        }
+
+        private void DecreaseSnakesSize()
+        {
+            for (var snakeIndex = _snakes.Count - 1; snakeIndex >= 0; snakeIndex--)
+            {
+                var snake = _snakes[snakeIndex];
+
+                if (snake.Model.Tails.Count == 0)
+                {
+                    _snakes.Remove(snake);
+                    Object.Destroy(snake.View.gameObject);
+
+                    continue;
+                }
+
+                snake.Model.DecreaseTailsCount();
             }
         }
     }

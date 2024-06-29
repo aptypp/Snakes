@@ -12,6 +12,9 @@ namespace Core.Snakes
         public int SnakesCount { get; private set; }
 
         [field: SerializeField]
+        public int TailsCount { get; private set; }
+
+        [field: SerializeField]
         public float MoveSpeedMin { get; private set; }
 
         [field: SerializeField]
@@ -31,6 +34,9 @@ namespace Core.Snakes
 
         [field: SerializeField]
         public Vector2 MaxSpawnPosition { get; private set; }
+
+        [field: SerializeField]
+        public TailView TailViewPrefab { get; private set; }
 
         [field: SerializeField]
         public SnakeView SnakeViewPrefab { get; private set; }

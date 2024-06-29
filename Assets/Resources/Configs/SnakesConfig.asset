@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dcfcdfc8649421ca43826945a91d077, type: 3}
   m_Name: SnakesConfig
   m_EditorClassIdentifier: 
-  <SnakesCount>k__BackingField: 8
+  <SnakesCount>k__BackingField: 1000
+  <TailsCount>k__BackingField: 10
   <MoveSpeedMin>k__BackingField: 2
   <MoveSpeedMax>k__BackingField: 8
   <MoveSmoothDelta>k__BackingField: 5
@@ -20,5 +21,7 @@ MonoBehaviour:
   <RotationSmoothDeltaMax>k__BackingField: 10
   <MinSpawnPosition>k__BackingField: {x: -30, y: -30}
   <MaxSpawnPosition>k__BackingField: {x: 30, y: 30}
+  <TailViewPrefab>k__BackingField: {fileID: -512257382910870250, guid: 0783de28a9e72e341a0778af328b803d,
+    type: 3}
   <SnakeViewPrefab>k__BackingField: {fileID: 7717979191511964388, guid: a8c597560ca33024e895f952602bdbcf,
     type: 3}
