@@ -56,7 +56,7 @@ namespace Core.Snakes
 
             view.AteFood += model.AteFood;
 
-            for (int tailIndex = 0; tailIndex < _config.TailsCount; tailIndex++)
+            for (var tailIndex = 0; tailIndex < _config.TailsCount; tailIndex++)
             {
                 model.IncreaseTailsCount();
             }
